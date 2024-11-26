@@ -1,39 +1,66 @@
+using JetBrains.Annotations;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
 
     private Rigidbody2D m_Rigidbody;
     private Vector3 lastCheckpointPosition;
+    public float RotationSpeed;
+    public TextMeshProUGUI DraaiSnelheid;
+
+    public float FlySpeed;
+    public TextMeshProUGUI VliegSnelheid;
+
+
+
     void Start()
     {
+        DraaiSnelheid.text = "Draaisnelheid: " + RotationSpeed;
+        VliegSnelheid.text = "Vliegsnelheid: " + FlySpeed;
+
+
         m_Rigidbody = GetComponent<Rigidbody2D>();
         lastCheckpointPosition = transform.position; // Startpositie als eerste checkpoint
     }
+    public void SpeedChange(float speed)
+    {
+        RotationSpeed = speed;
+        Debug.Log(speed);
+    }
 
+    public void VliegSpeed(float Snelheid)
+    {
+        FlySpeed = Snelheid;
+       
+    }
     private void FixedUpdate()
-    {   
-        
-        m_Rigidbody.rotation += 2f;
+    {
+        DraaiSnelheid.text = "Draaisnelheid: " + RotationSpeed;
+        VliegSnelheid.text = "Vliegsnelheid: " + FlySpeed;
+
+        m_Rigidbody.rotation += RotationSpeed;
         if(Input.GetAxis("Horizontal") >  0)
         {
-            m_Rigidbody.AddForce(new Vector2(5, 0));
+            m_Rigidbody.AddForce(new Vector2(FlySpeed, 0));
         }
 
         if (Input.GetAxis("Horizontal") < 0)
         {
-            m_Rigidbody.AddForce(new Vector2(-5, 0));
+            m_Rigidbody.AddForce(new Vector2(-FlySpeed, 0));
         }
 
         if(Input.GetAxis("Vertical") > 0)
         {
-            m_Rigidbody.AddForce(new Vector2(0, 5));
+            m_Rigidbody.AddForce(new Vector2(0, FlySpeed));
         }
 
         if (Input.GetAxis("Vertical") < 0)
         {
-            m_Rigidbody.AddForce(new Vector2(0, -5));
+            m_Rigidbody.AddForce(new Vector2(0, -FlySpeed));
         }
     }
 
@@ -57,6 +84,11 @@ public class Player : MonoBehaviour
         {
             lastCheckpointPosition = other.transform.position;
             Debug.Log("Checkpoint bereikt!");
+        }
+
+        if (other.CompareTag("Win"))
+        {
+            AchieveVictory();
         }
     }
 
@@ -82,6 +114,17 @@ public class Player : MonoBehaviour
         {
             Debug.Log("we bewegen naar omhoog");
         }
+    }
+
+    // roep dit aan als je wint
+    private void AchieveVictory()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void RotationspeedText()
+    {
+        
     }
 }
 

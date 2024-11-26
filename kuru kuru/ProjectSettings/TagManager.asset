@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Checkpoint
+  - Win
   - Obstacle
   layers:
   - Default
