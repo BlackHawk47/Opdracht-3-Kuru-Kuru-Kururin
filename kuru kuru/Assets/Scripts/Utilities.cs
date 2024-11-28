@@ -17,4 +17,9 @@ public class Utilities : MonoBehaviour
     {
         Debug.Log("De knop werkt!");
     }
+
+    public void ShowCredits()
+    {
+        
+    }
 }

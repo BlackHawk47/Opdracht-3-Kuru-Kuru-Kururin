@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI VliegSnelheid;
 
 
-
     void Start()
     {
         DraaiSnelheid.text = "Draaisnelheid: " + RotationSpeed;
