@@ -12,6 +12,7 @@ public class MyUI : MonoBehaviour
     public void HideMyUI()
     {
         myUIObject?.SetActive(false);
+        
     }
 
     public void SetQuality(int quality)
