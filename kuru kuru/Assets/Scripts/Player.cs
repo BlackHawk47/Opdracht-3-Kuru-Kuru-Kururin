@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public float FlySpeed;
     public TextMeshProUGUI VliegSnelheid;
 
-
+    
     void Start()
     {
         DraaiSnelheid.text = "Draaisnelheid: " + RotationSpeed;
@@ -25,17 +25,19 @@ public class Player : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody2D>();
         lastCheckpointPosition = transform.position; // Startpositie als eerste checkpoint
     }
+    //je kan de snelheid 
     public void SpeedChange(float speed)
     {
         RotationSpeed = speed;
         Debug.Log(speed);
     }
-
+    //de vliegsnelheid
     public void VliegSpeed(float Snelheid)
     {
         FlySpeed = Snelheid;
        
     }
+    //zorgt er voor dat je kan vliegen
     private void FixedUpdate()
     {
         DraaiSnelheid.text = "Draaisnelheid: " + RotationSpeed;
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
             Debug.Log("We hebben iets geraakt, terug naar start");
         }
     }
-
+    //checkpoint
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Checkpoint"))
@@ -91,7 +93,7 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    //zorgt er voor dat je kan vliegen
     void Update()
     {
         if(Input.GetAxis("Horizontal") > 0)

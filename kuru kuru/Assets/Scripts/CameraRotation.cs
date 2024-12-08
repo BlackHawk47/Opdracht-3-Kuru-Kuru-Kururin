@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+//zorgt er voor dat de camera stil blijft staan en niet mee draaid
 public class CameraRotation : MonoBehaviour
 {
 
@@ -17,6 +17,3 @@ public class CameraRotation : MonoBehaviour
 
     }
 }
-
-//positie speler
-//
